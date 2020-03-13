@@ -1,8 +1,8 @@
 #!/bin/sh
-set -e
+set -ex
 
-VER=$(wget -q -O- https://api.github.com/repos/v2ray/v2ray-core/releases/latest | awk -F'"' '/tag_name/ {print $4}')
-wget -q -O- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d /usr/sbin v2ray v2ctl
+VER=$(wget -O- https://api.github.com/repos/v2ray/v2ray-core/releases/latest | awk -F'"' '/tag_name/ {print $4}')
+wget -O- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d /usr/sbin v2ray v2ctl
 chmod +x /usr/sbin/v2ctl /usr/sbin/v2ray
 
 cat << EOF > /config.json
