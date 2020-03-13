@@ -1,8 +1,6 @@
-FROM debian:sid-slim
+FROM alpine:edge
 
-RUN apt-get update && \
-    apt-get install -y openssh-server wget unzip && \
-    apt-get clean
+RUN apk add --no-cache openssh-server
 
 COPY run.sh /run.sh
 
