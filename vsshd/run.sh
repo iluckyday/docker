@@ -34,8 +34,7 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 	echo "${AUTHORIZED_KEYS}" > /root/.ssh/authorized_keys
 	chmod 600 /root/.ssh/authorized_keys
 fi
+/v2ray -config /config.json &
 
 /usr/bin/ssh-keygen -A
-/usr/sbin/sshd -e -o LogLevel=DEBUG3 -o ListenAddress=127.0.0.1 -o PermitRootLogin=without-password -o AuthenticationMethods=publickey
-cat /config.json
-/v2ray -config /config.json
+/usr/sbin/sshd -e -D -o LogLevel=DEBUG3 -o ListenAddress=127.0.0.1 -o PermitRootLogin=without-password -o AuthenticationMethods=publickey
