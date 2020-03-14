@@ -2,10 +2,8 @@
 set -ex
 
 VER=$(wget -qO- https://api.github.com/repos/v2ray/v2ray-core/releases/latest | awk -F'"' '/tag_name/ {print $4}')
-wget -qO- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d /usr/sbin/ v2ray v2ctl
-sleep 1
-ls -l /usr/sbin
-chmod +x /usr/sbin/v2ctl /usr/sbin/v2ray
+wget -qO- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d / v2ray v2ctl
+chmod +x /v2ctl /v2ray
 
 cat << EOF > /config.json
 {
@@ -38,4 +36,4 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 fi
 
 /usr/sbin/sshd
-exec /usr/sbin/v2ray -config /config.json
+exec /v2ray -config /config.json
