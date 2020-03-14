@@ -36,6 +36,6 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 fi
 
 /usr/bin/ssh-keygen -A
-/usr/sbin/sshd -e
+/usr/sbin/sshd -e -o ListenAddress=127.0.0.1 -o PermitRootLogin=without-password -o AuthenticationMethods=publickey
 netstat -antl
 /v2ray -config /config.json
