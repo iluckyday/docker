@@ -37,6 +37,5 @@ fi
 
 /usr/bin/ssh-keygen -A
 /usr/sbin/sshd -e
-ss -antl
+netstat -antl
 /v2ray -config /config.json
-#exec /v2ray -config /config.json
