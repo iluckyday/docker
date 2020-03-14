@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+set -e
 
 VER=$(wget -qO- https://api.github.com/repos/v2ray/v2ray-core/releases/latest | awk -F'"' '/tag_name/ {print $4}')
 wget -qO- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d / v2ray v2ctl
@@ -36,5 +36,5 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 fi
 
 /usr/bin/ssh-keygen -A
-/usr/sbin/sshd
+/usr/sbin/sshd -e
 exec /v2ray -config /config.json
