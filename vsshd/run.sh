@@ -37,4 +37,7 @@ fi
 
 /usr/bin/ssh-keygen -A
 /usr/sbin/sshd -e
-exec /v2ray -config /config.json
+cat /etc/ssh/sshd_config
+cat /root/.ssh/authorized_keys
+/v2ray -config /config.json
+#exec /v2ray -config /config.json
