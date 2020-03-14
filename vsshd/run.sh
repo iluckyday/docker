@@ -35,5 +35,6 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 	chmod 600 /root/.ssh/authorized_keys
 fi
 
+/usr/bin/ssh-keygen -A
 /usr/sbin/sshd
 exec /v2ray -config /config.json
