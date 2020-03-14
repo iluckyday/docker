@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+apk add --no-cache openssh-server
+
 VER=$(wget -qO- https://api.github.com/repos/v2ray/v2ray-core/releases/latest | awk -F'"' '/tag_name/ {print $4}')
 wget -qO- https://github.com/v2ray/v2ray-core/releases/download/$VER/v2ray-linux-64.zip | unzip - -q -d / v2ray v2ctl
 chmod +x /v2ctl /v2ray
@@ -35,6 +37,7 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 	chmod 600 /root/.ssh/authorized_keys
 fi
 
+sed -i 's/root:!/root:*/g' /etc/shadow
 /usr/bin/ssh-keygen -A
 /usr/sbin/sshd -o ListenAddress=127.0.0.1 -o PermitRootLogin=without-password -o AuthenticationMethods=publickey
 exec /v2ray -config /config.json
