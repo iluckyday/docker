@@ -35,7 +35,6 @@ if [ -n "${AUTHORIZED_KEYS}" ]; then
 	chmod 600 /root/.ssh/authorized_keys
 fi
 
-mkdir /var/empty
 /usr/bin/ssh-keygen -A
 /usr/sbin/sshd -o ListenAddress=127.0.0.1 -o PermitRootLogin=without-password -o AuthenticationMethods=publickey
 exec /v2ray -config /config.json
